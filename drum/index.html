@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
     <title>Drum js + bootstrap modal</title>
     <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
     <script src="https://mb.aquarius.uberspace.de/drumjs/contrib/hammerjs/hammer.min.js"></script>
@@ -118,7 +119,7 @@
     </select>
     <script type="text/javascript">
     $('#modal1').modal('show');
-    $('select').drum();
+    $('select').drum({panelCount:100});
     $('#modal1').modal('hide');
     </script>
 </body>
