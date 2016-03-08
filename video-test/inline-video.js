@@ -40,7 +40,7 @@ var InlineVideo = (function () {
         this.ios = fake_ios || /iPad|iPhone|iPod/.test(navigator.platform);
         // On IOS it will be webkitRequestAnimationFrame. Hopefully they will drop the prefix in the future
         // !Notice: Dropped other prefix since this is for IOS only
-
+        alert("is this ios:", this.ios);
         if (!window.requestAnimationFrame) {
             window.requestAnimationFrame = window.webkitRequestAnimationFrame;
             window.cancelRequestAnimationFrame = window.webkitCancelRequestAnimationFrame;
