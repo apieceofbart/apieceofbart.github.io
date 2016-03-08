@@ -62,9 +62,12 @@ var InlineVideo = (function () {
         key: 'play',
         value: function play() {
             var _this = this;
-
+            alert(this.video.width);
+                alert(window.innerWidth);
+                alert(window.clientWidth);
+                alert(this.canvas.width);
             if (this.ios) {  
-            console.log('ios');             
+
                 this.last_frame_time = Date.now();
                 this.animation_request = requestAnimationFrame(function (t) {
                     return _this.render_frame(t);
@@ -79,7 +82,7 @@ var InlineVideo = (function () {
     }, {
         key: 'pause',
         value: function pause() {
-            if (this.ios) {
+            if (this.ios) {                
                 cancelAnimationFrame(this.animation_request);
                 if (this.audio) {
                     this.audio.pause();
