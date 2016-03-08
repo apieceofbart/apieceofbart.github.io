@@ -42,10 +42,11 @@
     
 
     
-    <script src="inline-video.js?v=0.6"></script>
+    <script src="inline-video.js?v=0.7"></script>
     <script>
     var canvas = document.querySelector('canvas');    
     canvas.width = window.innerWidth;    
+    canvas.heigth = window.innerHeight * 0.5;
     var iv = new InlineVideo('#fit-video', '#fit-video-ios-fallback');
     iv.video.load();
 
