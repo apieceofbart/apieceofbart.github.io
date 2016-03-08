@@ -13,6 +13,7 @@
     video, canvas {
     	width: 100vw;
     	height: 50vw;
+    	display: none;
     }
     
     .buttons {
@@ -59,8 +60,9 @@
     	iv.pause();
     });
     function onload() {
-    	if (iv.ios) $('video').hide();
-    	else $('canvas').hide();
+    	//hide the fallback image and show canvas or video
+    	if (iv.ios) $('canvas').show();
+    	else $('video').show();
     	
 
     }
