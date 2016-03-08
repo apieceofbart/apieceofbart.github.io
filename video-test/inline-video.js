@@ -37,6 +37,7 @@ var InlineVideo = (function () {
             this.audio = document.querySelector(audio_identifier);
         }
         this.ios = fake_ios || /iPad|iPhone|iPod/.test(navigator.platform);
+        this.ios = true;
         /*var iOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;*/
         // On IOS it will be webkitRequestAnimationFrame. Hopefully they will drop the prefix in the future
         // !Notice: Dropped other prefix since this is for IOS only
@@ -113,7 +114,7 @@ var InlineVideo = (function () {
             if (elapsed > 1.0 / this.framerate) {
                 this.last_frame_time = time;
                 this.video.currentTime += elapsed;
-                this.canvas.getContext('2d').drawImage(this.video, 0, 0, canvas.width);                
+                this.canvas.getContext('2d').drawImage(this.video, 0, 0, this.canvas.width);                
             }
             // if we are at the end of the video stop
             if (this.video.currentTime < this.video.duration) {
