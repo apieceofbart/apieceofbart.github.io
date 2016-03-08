@@ -11,18 +11,26 @@
     video, canvas {
     	width: 100%;
     }
+    .buttons {
+    	margin: 30px 0;
+    }
+    button {
+    	padding 15px;
+    }
     </style>
 </head>
 
 <body>
+<div class="buttons">	<button class="play">Play</button>
+    <button class="pause">Pause</button>
+    </div>
 	<canvas id="fit-video-ios-fallback" ></canvas>
     <video id="fit-video" controls playsinline webkit-playsinline muted>
         
         <source src=fit-example.mp4 type=video/mp4 >
         
     </video>
-    <button class="play">Play</button>
-    <button class="pause">Pause</button>
+    
 
     
     <script src="inline-video.js"></script>
