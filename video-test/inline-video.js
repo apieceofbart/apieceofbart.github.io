@@ -63,7 +63,7 @@ var InlineVideo = (function () {
         value: function play() {
             var _this = this;            
             if (this.ios) {  
-
+                alert('playing at width:', window.innerWidth);
                 this.last_frame_time = Date.now();
                 this.animation_request = requestAnimationFrame(function (t) {
                     return _this.render_frame(t);
@@ -90,8 +90,7 @@ var InlineVideo = (function () {
     }, {
         key: 'rewind',
         value: function rewind() {
-            if (this.ios) {
-                alert('playing at width:', window.innerWidth);
+            if (this.ios) {                
                 this.video.currentTime = 0;
                 this.pause();
                 this.play();
