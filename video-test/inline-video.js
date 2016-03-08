@@ -61,11 +61,7 @@ var InlineVideo = (function () {
     _createClass(InlineVideo, [{
         key: 'play',
         value: function play() {
-            var _this = this;
-            alert(this.video.width);
-                alert(window.innerWidth);
-                alert(window.clientWidth);
-                alert(this.canvas.width);
+            var _this = this;            
             if (this.ios) {  
 
                 this.last_frame_time = Date.now();
@@ -117,7 +113,7 @@ var InlineVideo = (function () {
             if (elapsed > 1.0 / this.framerate) {
                 this.last_frame_time = time;
                 this.video.currentTime += elapsed;
-                this.canvas.getContext('2d').drawImage(this.video, 0, 0, this.video.width, this.video.height);                
+                this.canvas.getContext('2d').drawImage(this.video, 0, 0, window.innerWidth);                
             }
             // if we are at the end of the video stop
             if (this.video.currentTime < this.video.duration) {
