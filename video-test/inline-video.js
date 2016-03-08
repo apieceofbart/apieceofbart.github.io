@@ -27,8 +27,7 @@ var InlineVideo = (function () {
         var on_ended = arguments.length <= 3 || arguments[3] === undefined ? null : arguments[3];
         var on_load = arguments.length <= 4 || arguments[4] === undefined ? null : arguments[4];
         var framerate = arguments.length <= 5 || arguments[5] === undefined ? 25 : arguments[5];
-        var fake_ios = arguments.length <= 6 || arguments[6] === undefined ? false : arguments[6];
-
+        var fake_ios = arguments.length <= 6 || arguments[6] === undefined ? false : arguments[6];        
         _classCallCheck(this, InlineVideo);
 
         this.video = document.querySelector(video_identifier);
@@ -63,7 +62,8 @@ var InlineVideo = (function () {
         value: function play() {
             var _this = this;
 
-            if (this.ios) {
+            if (this.ios) {  
+            console.log('ios');             
                 this.last_frame_time = Date.now();
                 this.animation_request = requestAnimationFrame(function (t) {
                     return _this.render_frame(t);
@@ -105,7 +105,7 @@ var InlineVideo = (function () {
         }
     }, {
         key: 'render_frame',
-        value: function render_frame(t) {
+        value: function render_frame(t) {              
             var _this2 = this;
 
             var time = Date.now();
@@ -113,8 +113,7 @@ var InlineVideo = (function () {
             if (elapsed > 1.0 / this.framerate) {
                 this.last_frame_time = time;
                 this.video.currentTime += elapsed;
-                this.canvas.getContext('2d').drawImage(this.video, 0, 0);
-                console.log();
+                this.canvas.getContext('2d').drawImage(this.video, 0, 0, canvas.width);                
             }
             // if we are at the end of the video stop
             if (this.video.currentTime < this.video.duration) {
