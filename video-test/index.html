@@ -8,9 +8,9 @@
     html, body {
     	margin:0;
     }
-    video, canvas {
+    /*video, canvas {
     	width: 100%;
-    }
+    }*/
     .buttons {
     	margin: 30px 0;
     }
@@ -24,18 +24,17 @@
 <div class="buttons">	<button class="play">Play</button>
     <button class="pause">Pause</button>
     </div>
-	<canvas id="fit-video-ios-fallback" ></canvas>
-    <video id="fit-video" controls playsinline webkit-playsinline muted>
+	<canvas id="fit-video-ios-fallback" width="320" height="176"></canvas>
+    <video id="fit-video" playsinline webkit-playsinline muted width="320" height="176">
         
         <source src=fit-example.mp4 type=video/mp4 >
         
     </video>
-    
 
     
     <script src="inline-video.js"></script>
     <script>
-    var iv = new InlineVideo('#fit-video', '#fit-video-ios-fallback', null);
+    var iv = new InlineVideo('#fit-video', '#fit-video-ios-fallback');
     iv.video.load();
 
     document.querySelector('button.play').addEventListener("click", function(){

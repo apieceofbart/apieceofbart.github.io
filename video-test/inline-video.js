@@ -37,12 +37,12 @@ var InlineVideo = (function () {
         if (audio_identifier) {
             this.audio = document.querySelector(audio_identifier);
         }
-        /*this.ios = fake_ios || /iPad|iPhone|iPod/.test(navigator.platform);*/
-        this.ios = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+        this.ios = fake_ios || /iPad|iPhone|iPod/.test(navigator.platform);
+        /*var iOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;*/
         // On IOS it will be webkitRequestAnimationFrame. Hopefully they will drop the prefix in the future
         // !Notice: Dropped other prefix since this is for IOS only
-        alert('navigator:', navigator.userAgent);
-        alert("is this ios:", this.ios);
+        /*alert('navigator:', navigator.platform);
+        alert("is this ios:", this.ios);*/
         if (!window.requestAnimationFrame) {
             window.requestAnimationFrame = window.webkitRequestAnimationFrame;
             window.cancelRequestAnimationFrame = window.webkitCancelRequestAnimationFrame;
