@@ -13,6 +13,9 @@
     video, canvas {
     	width: 100vw;
     }
+    video {
+    	height: 50vw;
+    }
     .buttons {
     	margin: 30px 0;
     }
@@ -41,12 +44,12 @@
     </video>
     
 
-    
-    <script src="inline-video.js?v=0.9"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="inline-video.js?v=1.0"></script>
     <script>
     var canvas = document.querySelector('canvas');    
-    canvas.width = window.innerWidth;    
-    canvas.heigth = window.innerHeight * 0.5;
+    canvas.width = $('video').innerWidth();
+    canvas.heigth = $('video').innerHeight();
     var iv = new InlineVideo('#fit-video', '#fit-video-ios-fallback');
     iv.video.load();
 
