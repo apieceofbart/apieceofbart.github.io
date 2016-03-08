@@ -63,7 +63,7 @@ var InlineVideo = (function () {
         value: function play() {
             var _this = this;            
             if (this.ios) {  
-                alert('playing at width: ' + window.innerWidth + '\n canvas size is: ' + this.canvas.width);
+                alert('playing at width: ' + this.video.videoWidth + '\n canvas size is: ' + this.canvas.width);
 
                 this.last_frame_time = Date.now();
                 this.animation_request = requestAnimationFrame(function (t) {
@@ -114,7 +114,7 @@ var InlineVideo = (function () {
             if (elapsed > 1.0 / this.framerate) {
                 this.last_frame_time = time;
                 this.video.currentTime += elapsed;
-                this.canvas.getContext('2d').drawImage(this.video, 0, 0, window.innerWidth);                
+                this.canvas.getContext('2d').drawImage(this.video, 0, 0, this.video.videoWidth, this.video.videoHeight);                
             }
             // if we are at the end of the video stop
             if (this.video.currentTime < this.video.duration) {
