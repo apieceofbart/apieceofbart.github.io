@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Video tests</title>
+</head>
+
+<body>
+	<canvas id="fit-video-ios-fallback" ></canvas>
+    <video id="fit-video" controls playsinline webkit-playsinline muted>
+        
+        <source src=fit-example.mp4 type=video/mp4 >
+        
+    </video>
+    <button class="play">Play</button>
+    <button class="pause">Pause</button>
+
+    
+    <script src="inline-video.js"></script>
+    <script>
+    var iv = new InlineVideo('#fit-video', '#fit-video-ios-fallback', null);
+    iv.video.load();
+    
+    document.querySelector('button.play').addEventListener("click", function(){
+    	iv.video.play();
+    });
+    document.querySelector('button.pause').addEventListener("click", function(){
+    	iv.video.pause();
+    });
+    </script>
+</body>
+
+</html>
