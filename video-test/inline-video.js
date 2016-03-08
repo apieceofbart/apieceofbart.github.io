@@ -63,7 +63,8 @@ var InlineVideo = (function () {
         value: function play() {
             var _this = this;            
             if (this.ios) {  
-                alert('playing at width: ' + window.innerWidth);
+                alert('playing at width: ' + window.innerWidth + '\n canvas size is: ' + this.canvas.width);
+
                 this.last_frame_time = Date.now();
                 this.animation_request = requestAnimationFrame(function (t) {
                     return _this.render_frame(t);
