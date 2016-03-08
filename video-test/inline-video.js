@@ -54,7 +54,7 @@ var InlineVideo = (function () {
         }
 
         if (on_load) {
-            this.video.addEventListener('loadeddata', on_load);
+            this.video.addEventListener('loadeddata', on_load);            
         }
     }
 
@@ -114,7 +114,7 @@ var InlineVideo = (function () {
             if (elapsed > 1.0 / this.framerate) {
                 this.last_frame_time = time;
                 this.video.currentTime += elapsed;
-                this.canvas.getContext('2d').drawImage(this.video, 0, 0, this.canvas.width, this.canvas.height);                
+                this.canvas.getContext('2d').drawImage(this.video, 0, 0, this.canvas.width);                
             }
             // if we are at the end of the video stop
             if (this.video.currentTime < this.video.duration) {
