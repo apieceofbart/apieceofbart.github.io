@@ -9,15 +9,29 @@
     html, body {
     	margin:0;
     	font-family: sans-serif;
+        padding-top: 50px;
     }
-    video, canvas {
-    	width: 100vw;
-    	height: 50vw;
-    	display: none;
+    .video-container {
+        width: 100%;
+        max-height: 35vh;
+        object-fit: cover;
+    }
+    video, canvas { 
+        width: 100%;   	
+    	display: none;        
+        z-index:1;
+        object-fit: cover;
+        background:transparent url('fit-example-fallback.jpg') no-repeat 0 0; 
+        -webkit-background-size:cover; 
+        -moz-background-size:cover; 
+        -o-background-size:cover; 
+        background-size:cover;
     }
     
     .buttons {
     	margin: 30px 0;
+        z-index: 2000;
+        position: fixed;
     }
     button {
     	width:200px;
@@ -33,15 +47,17 @@
 </head>
 
 <body>
-<div class="buttons">	<button class="play">Play</button>
-    <button class="pause">Pause</button>
+    <div class="buttons">	
+        <button class="play">Play</button>
+        <button class="pause">Pause</button>
     </div>
-	<canvas id="fit-video-ios-fallback" ></canvas>
-    <video id="fit-video" playsinline webkit-playsinline muted>
-        
-        <source src=fit-example.mp4 type=video/mp4 >
-        
-    </video>
+
+    <div class="video-container">
+	   <canvas id="fit-video-ios-fallback" ></canvas>
+        <video id="fit-video" playsinline webkit-playsinline muted>        
+            <source src=fit-example.mp4 type=video/mp4 >            
+        </video>
+    </div>
     
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
@@ -50,7 +66,7 @@
     var canvas = document.querySelector('canvas');    
     canvas.width = $('video').innerWidth();
     canvas.height = $('video').innerHeight();    
-    var iv = new InlineVideo('#fit-video', '#fit-video-ios-fallback', null, null, onload);
+    var iv = new InlineVideo('#fit-video', '#fit-video-ios-fallback', null, null, onload, 30, false);
     iv.video.load();
 
     document.querySelector('button.play').addEventListener("click", function(){
@@ -60,7 +76,7 @@
     	iv.pause();
     });
     function onload() {
-    	//hide the fallback image and show canvas or video
+    	//hide the fallback imageshow canvas or video
     	if (iv.ios) $('canvas').show();
     	else $('video').show();
     	
