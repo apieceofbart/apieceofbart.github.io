@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Interpolation tests</title>
+</head>
+<body>
+	<button>Play/Pause</button>
+	<canvas id="normal" width="200">
+	</canvas>
+
+	<canvas id="better" width="200">
+	</canvas>
+	<video id="fit-video" playsinline webkit-playsinline muted>        
+            <source src=fit-example.mp4 type=video/mp4 >            
+     </video>
+
+     <script>
+     	var video = document.querySelector('video');
+     	var canvas = document.querySelector('#better');
+     	var ctx = canvas.getContext('2d');
+
+
+     	var canvas2 = document.querySelector('#normal');
+     	var ctx2 = canvas2.getContext('2d');
+
+     	video.addEventListener('loadedmetadata', function(){
+
+     	console.log('video loaded');
+
+     	canvas.height = canvas.width * (video.clientHeight / video.clientWidth);
+     	canvas2.height = canvas2.width * (video.clientHeight / video.clientWidth);
+     	
+
+     	var helperCanvas = document.createElement('canvas');
+     	var helperContext = helperCanvas.getContext('2d');
+
+     	helperCanvas.width = video.clientWidth * 0.5;
+        helperCanvas.height = video.clientHeight * 0.5;
+        
+
+     document.querySelector('button').addEventListener('click', function(){
+     	if (video.paused) video.play();
+     	else { 
+     		video.pause();
+     		//drawBetter();
+     		//draw();
+     	}
+     })
+
+     function draw(){
+     	ctx2.drawImage(video,0,0,canvas2.width,canvas2.height);
+     }
+
+    function drawBetter() {
+    	helperContext.drawImage(video, 0,0, helperCanvas.width, helperCanvas.height);
+
+    	// step 2
+    	helperContext.drawImage(helperCanvas, 0, 0, helperCanvas.width * 0.5, helperCanvas.height * 0.5);
+            
+    	ctx.drawImage(helperCanvas,0,0,helperCanvas.width * 0.5, helperCanvas.height * 0.5,0,0,canvas.width,canvas.height); 
+    }
+    
+    setInterval(draw, 50);
+    setInterval(drawBetter, 50);
+
+     function render_frame(t) { 
+                      
+            var last_frame_time = Date.now();
+            var framerate = 25;
+
+            var time = Date.now();
+            var elapsed = (time - last_frame_time) / 1000.0;
+            
+            if (elapsed > 1.0 / framerate) {                                
+                last_frame_time = time;
+                video.currentTime += elapsed;                
+                canvas.getContext('2d').drawImage(this.video, 0, 0,canvas.width, tcanvas.height);
+            }
+
+        }
+
+    });
+
+     </script>
+</body>
+</html>
