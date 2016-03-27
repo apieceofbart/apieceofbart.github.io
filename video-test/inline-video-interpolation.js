@@ -26,6 +26,8 @@
         canvas2.width = video.clientWidth;
         canvas3.width = video.clientWidth;
 
+        
+
         canvas.height = canvas.width * (video.videoHeight / video.videoWidth);
         canvas2.height = canvas2.width * (video.videoHeight / video.videoWidth);
         canvas3.height = canvas3.width * (video.videoHeight / video.videoWidth);
