@@ -12,6 +12,15 @@
         var ctx = canvas.getContext('2d');
         var diff = document.querySelector('#diff');
 
+              var helperCanvas = document.createElement('canvas');
+        var helperContext = helperCanvas.getContext('2d');
+
+                var helperCanvas2 = document.createElement('canvas');
+        var helperContext2 = helperCanvas2.getContext('2d');
+        video.addEventListener('loadedmetadata', function(){ 
+
+
+
         
         canvas.width = video.clientWidth;
         canvas2.width = video.clientWidth;
@@ -23,18 +32,18 @@
         //diff.width = canvas.width;
         //diff.height = canvas.height;
 
-        var helperCanvas = document.createElement('canvas');
-        var helperContext = helperCanvas.getContext('2d');
+  
 
         helperCanvas.width = video.videoWidth * 0.5;
         helperCanvas.height = video.videoHeight * 0.5;
 
 
-        var helperCanvas2 = document.createElement('canvas');
-        var helperContext2 = helperCanvas2.getContext('2d');
+
 
         helperCanvas2.width = video.videoWidth * 0.25;
         helperCanvas2.height = video.videoHeight * 0.25;
+
+    });
 
 
 var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
@@ -95,10 +104,12 @@ var InlineVideo = (function () {
     _createClass(InlineVideo, [{
         key: 'play',
         value: function play() {
+
             var _this = this;            
             if (this.ios) {                  
                 this.last_frame_time = Date.now();
                 this.animation_request = requestAnimationFrame(function (t) {
+
                     return _this.render_frame(t);
                 });
                 if (this.audio) {
@@ -138,7 +149,8 @@ var InlineVideo = (function () {
         }
     }, {
         key: 'render_frame',
-        value: function render_frame(t) {              
+        value: function render_frame(t) {  
+
             var _this2 = this;
 
             var time = Date.now();
@@ -164,6 +176,7 @@ var InlineVideo = (function () {
     },{
         key: 'draw',
         value: function draw() {
+            
             ctx2.drawImage(video,0,0,canvas2.width,canvas2.height);
         }
     },{
