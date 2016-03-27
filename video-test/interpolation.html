@@ -31,7 +31,10 @@
     </style>
 </head>
 <body>
-	<button>Play/Pause</button>
+	  <div class="buttons">    
+        <button class="play">Play</button>
+        <button class="pause">Pause</button>
+    </div>
     <div >
     <span>NORMAL</span>
 	<canvas id="normal">
@@ -55,48 +58,11 @@
             <source src=fit-example.mp4 type=video/mp4 >            
      </video>
 
+         <script src="inline-video-interpolation.js?v=1.4"></script>
+
      <script>
-     	var video = document.querySelector('video');
-     	var canvas = document.querySelector('#better');
-     	var ctx = canvas.getContext('2d');
-        var diff = document.querySelector('#diff');
+  
 
-     	var canvas2 = document.querySelector('#normal');
-     	var ctx2 = canvas2.getContext('2d');
-
-
-        var canvas3 = document.querySelector('#best');
-        var ctx3 = canvas3.getContext('2d');
-
-     	video.addEventListener('loadedmetadata', function(){
-
-     	console.log('video loaded');
-
-
-
-        
-        canvas.width = video.clientWidth;
-        canvas2.width = video.clientWidth;
-        canvas3.width = video.clientWidth;
-
-     	canvas.height = canvas.width * (video.videoHeight / video.videoWidth);
-     	canvas2.height = canvas2.width * (video.videoHeight / video.videoWidth);
-        canvas3.height = canvas3.width * (video.videoHeight / video.videoWidth);
-        //diff.width = canvas.width;
-        //diff.height = canvas.height;
-
-        var helperCanvas = document.createElement('canvas');
-        var helperContext = helperCanvas.getContext('2d');
-
-        helperCanvas.width = video.videoWidth * 0.5;
-        helperCanvas.height = video.videoHeight * 0.5;
-
-
-        var helperCanvas2 = document.createElement('canvas');
-        var helperContext2 = helperCanvas2.getContext('2d');
-
-        helperCanvas2.width = video.videoWidth * 0.25;
-        helperCanvas2.height = video.videoHeight * 0.25;
 
         var steps = Math.ceil(Math.log(video.videoWidth/canvas.width)/Math.log(2));
 
@@ -104,43 +70,21 @@
 
         //hide the video 
         video.style.display = "none";
-        
 
-     document.querySelector('button').addEventListener('click', function(){
-     	if (video.paused) video.play();
-     	else { 
-     		video.pause();
-     		//drawBetter();
-     		//draw();
-     	}
-     })
 
-     function draw(){
-     	ctx2.drawImage(video,0,0,canvas2.width,canvas2.height);
-     }
+        var iv = new InlineVideo('video', 'canvas', null, null, onload, 25, false);
+    iv.video.load();
 
-    function drawBetter() {
+    document.querySelector('button.play').addEventListener("click", function(){
+        iv.play();
+    });
+    document.querySelector('button.pause').addEventListener("click", function(){
+        iv.pause();
+    });
 
-       
-        helperContext.drawImage(video, 0,0, helperCanvas.width, helperCanvas.height);
-
-       /* for (var i = 1; i < steps; i++) {
-            
-            helperContext.drawImage(helperCanvas, 0, 0, helperCanvas.width * 0.5, helperCanvas.height * 0.5);
-        }*/
-    
-    	ctx.drawImage(helperCanvas,0,0,canvas.width,canvas.height); 
-    }
-
-    function drawBest() {
         
 
 
-        helperContext2.drawImage(helperCanvas, 0,0, helperCanvas2.width, helperCanvas2.height);
-         
-        //helperContext2.drawImage(helperCanvas2, 0,0, helperCanvas2.width, helperCanvas2.height);
-        ctx3.drawImage(helperCanvas2,0,0,canvas3.width,canvas3.height); 
-    }
     
     function drawDiff() {
         
@@ -154,18 +98,6 @@
 
         diff.style.background = "url(" + + "), url(" +  + ")";
     }
-
-    function drawEverything(){
-        draw();
-        drawBetter();
-        drawBest();
-        //drawDiff();
-    }
-
-    setInterval(drawEverything, 50);
-    //setInterval(drawBetter, 50);
-
-    });
 
      </script>
 </body>
