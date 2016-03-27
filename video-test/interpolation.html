@@ -2,15 +2,55 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Interpolation tests</title>
+    <style type="text/css">
+    * {
+        font-family: sans-serif;
+    }
+    div, video {
+        width:100%;
+    }
+    div {
+        position: relative;
+    }
+
+    div span {
+        position: absolute;
+        top:10px;
+        left:10px;
+        font-weight: bold;
+
+    }
+    #diff {
+            background-blend-mode: difference;
+    background-repeat: no-repeat;
+    background-position: center;
+
+    }
+    </style>
 </head>
 <body>
 	<button>Play/Pause</button>
-	<canvas id="normal" width="200">
-	</canvas>
+    <div >
+    <span>NORMAL</span>
+	<canvas id="normal">
 
-	<canvas id="better" width="200">
 	</canvas>
+    </div>
+    <div>
+    <span>1 STEP</span>
+	<canvas id="better">
+	</canvas>
+    </div>
+    <div>
+    <span>2 STEP</span>
+    <canvas id="best">
+    </canvas>
+    </div>
+    <!-- <div id="diff">
+        <span>DIFF</span>
+    </div> -->
 	<video id="fit-video" playsinline webkit-playsinline muted>        
             <source src=fit-example.mp4 type=video/mp4 >            
      </video>
@@ -19,24 +59,51 @@
      	var video = document.querySelector('video');
      	var canvas = document.querySelector('#better');
      	var ctx = canvas.getContext('2d');
-
+        var diff = document.querySelector('#diff');
 
      	var canvas2 = document.querySelector('#normal');
      	var ctx2 = canvas2.getContext('2d');
+
+
+        var canvas3 = document.querySelector('#best');
+        var ctx3 = canvas3.getContext('2d');
 
      	video.addEventListener('loadedmetadata', function(){
 
      	console.log('video loaded');
 
-     	canvas.height = canvas.width * (video.clientHeight / video.clientWidth);
-     	canvas2.height = canvas2.width * (video.clientHeight / video.clientWidth);
-     	
 
-     	var helperCanvas = document.createElement('canvas');
-     	var helperContext = helperCanvas.getContext('2d');
 
-     	helperCanvas.width = video.clientWidth * 0.5;
-        helperCanvas.height = video.clientHeight * 0.5;
+        
+        canvas.width = video.clientWidth;
+        canvas2.width = video.clientWidth;
+        canvas3.width = video.clientWidth;
+
+     	canvas.height = canvas.width * (video.videoHeight / video.videoWidth);
+     	canvas2.height = canvas2.width * (video.videoHeight / video.videoWidth);
+        canvas3.height = canvas3.width * (video.videoHeight / video.videoWidth);
+        //diff.width = canvas.width;
+        //diff.height = canvas.height;
+
+        var helperCanvas = document.createElement('canvas');
+        var helperContext = helperCanvas.getContext('2d');
+
+        helperCanvas.width = video.videoWidth * 0.5;
+        helperCanvas.height = video.videoHeight * 0.5;
+
+
+        var helperCanvas2 = document.createElement('canvas');
+        var helperContext2 = helperCanvas2.getContext('2d');
+
+        helperCanvas2.width = video.videoWidth * 0.25;
+        helperCanvas2.height = video.videoHeight * 0.25;
+
+        var steps = Math.ceil(Math.log(video.videoWidth/canvas.width)/Math.log(2));
+
+        console.log(steps);
+
+        //hide the video 
+        video.style.display = "none";
         
 
      document.querySelector('button').addEventListener('click', function(){
@@ -53,32 +120,50 @@
      }
 
     function drawBetter() {
-    	helperContext.drawImage(video, 0,0, helperCanvas.width, helperCanvas.height);
 
-    	// step 2
-    	helperContext.drawImage(helperCanvas, 0, 0, helperCanvas.width * 0.5, helperCanvas.height * 0.5);
+       
+        helperContext.drawImage(video, 0,0, helperCanvas.width, helperCanvas.height);
+
+       /* for (var i = 1; i < steps; i++) {
             
-    	ctx.drawImage(helperCanvas,0,0,helperCanvas.width * 0.5, helperCanvas.height * 0.5,0,0,canvas.width,canvas.height); 
+            helperContext.drawImage(helperCanvas, 0, 0, helperCanvas.width * 0.5, helperCanvas.height * 0.5);
+        }*/
+    
+    	ctx.drawImage(helperCanvas,0,0,canvas.width,canvas.height); 
+    }
+
+    function drawBest() {
+        
+
+
+        helperContext2.drawImage(helperCanvas, 0,0, helperCanvas2.width, helperCanvas2.height);
+         
+        //helperContext2.drawImage(helperCanvas2, 0,0, helperCanvas2.width, helperCanvas2.height);
+        ctx3.drawImage(helperCanvas2,0,0,canvas3.width,canvas3.height); 
     }
     
-    setInterval(draw, 50);
-    setInterval(drawBetter, 50);
+    function drawDiff() {
+        
+        var img1 = new Image();
+                img1.crossOrigin = "Anonymous";
+        img1.src = canvas.toDataURL("image/png");
 
-     function render_frame(t) { 
-                      
-            var last_frame_time = Date.now();
-            var framerate = 25;
+        var img2 = new Image();
+                img2.crossOrigin = "Anonymous";
+        img2.src = canvas2.toDataURL("image/png");
 
-            var time = Date.now();
-            var elapsed = (time - last_frame_time) / 1000.0;
-            
-            if (elapsed > 1.0 / framerate) {                                
-                last_frame_time = time;
-                video.currentTime += elapsed;                
-                canvas.getContext('2d').drawImage(this.video, 0, 0,canvas.width, tcanvas.height);
-            }
+        diff.style.background = "url(" + + "), url(" +  + ")";
+    }
 
-        }
+    function drawEverything(){
+        draw();
+        drawBetter();
+        drawBest();
+        //drawDiff();
+    }
+
+    setInterval(drawEverything, 50);
+    //setInterval(drawBetter, 50);
 
     });
 
