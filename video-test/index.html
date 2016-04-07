@@ -55,7 +55,9 @@
     <div class="video-container">
 	   <canvas id="fit-video-ios-fallback" ></canvas>
         <video id="fit-video" playsinline webkit-playsinline muted>        
-            <source src=fit-example.mp4 type=video/mp4 >            
+            <source src=neck.mp4 type=video/mp4 >            
+            <source src=neck.ogv type=video/ogg >    
+            <source src=neck.webm type=video/webm >          
         </video>
     </div>
     
@@ -79,6 +81,7 @@
     	//hide the fallback imageshow canvas or video
     	if (iv.ios) $('canvas').show();
     	else $('video').show();
+        iv.video.play();
     	
 
     }
