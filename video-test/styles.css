@@ -286,14 +286,14 @@ div.drum-wrapper .dial div {
 
 
 .hero-image-wrapper {
-    max-height: 35vh;
+    /*max-height: 35vh;*/
     overflow: hidden;
     padding:0;
 }
 
 .hero-image-wrapper img,
 .hero-image-wrapper video {
-    max-height: 35vh;
+    /*max-height: 35vh;*/
     object-fit: cover;
     width: 100%;
 }
@@ -306,7 +306,7 @@ div.drum-wrapper .dial div {
     background-size: cover;
     padding: 1em 2em;
     color: #eee;
-    max-height: none;
+    
 
 }
 
@@ -486,7 +486,7 @@ div.drum-wrapper .dial div {
 
 .horizontal .hero-image-wrapper,
 .horizontal .hero-image-wrapper video {
-    max-height: none;
+    
 }
 
 .horizontal .panel {
