@@ -80,7 +80,7 @@
     }
 
     function onend() {
-        iv.rewind();
+        iv.video.currentTime = 0;
     }
 
     document.querySelector('button.play').addEventListener("click", function(){
