@@ -119,7 +119,7 @@
 
 
 			function toggleVideoPlaying () {
-
+				console.log('toogle playing video');
 				if (!iv.isPlaying) {				 
 					iv.play();
 					icon.addClass('glyphicon-pause').removeClass('glyphicon-play');					
@@ -132,7 +132,7 @@
 			}
 
 			function toggleSlider(){				
-
+				console.log('toogle slider');
 				var slideTo = $('.panel').css('bottom') === "0px" ? -$('.panel').height() + 60 : 0;			
 
 				$('.panel').animate({
@@ -145,6 +145,7 @@
 
 			function orientationChange() {
 
+				console.log('orientationchange');
 				if (window.matchMedia("(orientation: landscape)").matches ) {				
 
 					if (!landspaceMode) {						
@@ -166,6 +167,7 @@
 			}
 
    			function onLoad() {
+   				console.log('video loaded');
 	    		//show canvas or video depends on os
 	    		if (iv.ios) $('#fit-video-ios-fallback').show();
 	    		else $('#fit-video').show();
@@ -180,6 +182,7 @@
 	    	}
 
 	    	function onEnd() {
+	    		console.log('video end');
 	    		//change the icon to play
 	    		iv.isPlaying = false;
 	    		//rewind
