@@ -54,8 +54,10 @@
     <!-- <div id="diff">
         <span>DIFF</span>
     </div> -->
-	<video id="fit-video" playsinline webkit-playsinline muted autoplay controls>        
-            <source src=fit-example.mp4 type=video/mp4 >            
+	<video id="fit-video" playsinline webkit-playsinline muted>        
+            <source src=neck.mp4 type=video/mp4 >            
+            <source src=neck.ogv type=video/ogg >    
+            <source src=neck.webm type=video/webm >    
      </video>
 
          <script src="inline-video-interpolation.js?v=1.4"></script>
@@ -69,7 +71,7 @@
         //console.log(steps);
 
         function onload() {
-            iv.video.play();
+            //iv.video.play();
         }
 
 
