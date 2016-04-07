@@ -1,96 +1,216 @@
-<!DOCTYPE html>
-<html lang="en">
+<html lang="en"><head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <title>Welcome!</title>
+                <link rel="icon" type="image/x-icon" href="/favicon.ico">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Video tests</title>
-    <style>
-    html, body {
-    	margin:0;
-    	font-family: sans-serif;
-        padding-top: 50px;
-    }
-    .video-container {
-        width: 100%;
-        max-height: 35vh;
-        object-fit: cover;
-    }
-    video, canvas { 
-        width: 100%;   	
-    	display: none;        
-        z-index:1;
-        object-fit: cover;
-        background:transparent url('fit-example-fallback.jpg') no-repeat 0 0; 
-        -webkit-background-size:cover; 
-        -moz-background-size:cover; 
-        -o-background-size:cover; 
-        background-size:cover;
-    }
+		<!-- jQuery library -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 
-    .buttons {
-    	margin: 30px 0;
-        z-index: 2000;
-        position: fixed;
-    }
-    button {
-    	width:200px;
-    	height: 100px
-    	padding 15px;
-    	margin:10px;
-    	font-size:20px;
-    	color: blue;
-    	font-weight: bold;
+		<!-- Latest compiled JavaScript -->
+		<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
-    }
-    </style>
-</head>
+		
+		<!-- <script src="/vendor/drumjs-master/lib/drum.min.js"></script> -->
+		
+		
+		<script src="inline-video.js"></script>		
+		<link href="styles.css" rel="stylesheet" type="text/css"> 
 
-<body>
-    <div class="buttons">	
-        <button class="play">Play</button>
-        <button class="pause">Pause</button>
-    </div>
+    </head>
+    <body style="padding-top: 5rem;">
+	<!-- Fixed navbar -->
+	<nav class="navbar navbar-default navbar-fixed-top">
+		<a class="navbar-brand" href="/">Wardrobe essentialist</a>
+		<div class="container">
+			
 
-    <div class="video-container">
-	   <canvas id="fit-video-ios-fallback" ></canvas>
-        <video id="fit-video" playsinline webkit-playsinline muted>        
-            <source src=neck.mp4 type=video/mp4 >            
-            <source src=neck.ogv type=video/ogg >    
-            <source src=neck.webm type=video/webm >          
-        </video>
-    </div>
-    
+			<div class="navbar-header text-center">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+								
+			</div>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-    <script src="inline-video.js?v=1.4"></script>
-    <script>
-    var canvas = document.querySelector('canvas');    
-    canvas.width = $('video').innerWidth();
-    canvas.height = $('video').innerHeight();    
-    var iv = new InlineVideo('#fit-video', '#fit-video-ios-fallback', null, onend, onload, 30, false);
-    iv.video.load();
+						<div id="navbar" class="navbar-collapse collapse navbar-left">
+								<!--				<ul class="nav navbar-nav">
+					<li><a href="/measurement">Measurements</a></li>
+				</ul> -->
+								<ul class="nav navbar-nav ">
+										<li>
+						<a href="/login">Login</a>
+					</li>
+										</ul>
+			</div><!--/.nav-collapse -->
+ 
+			
+		</div>
+	</nav>
+
+	<!--
+		<nav class="navbar navbar-fixed-top navbar-default">
+			<a class="navbar-brand" href="#">Project name</a>
+			<div class="navbar-right">
+
+			</div>
+		</nav> -->
+		<div class="body-block-wrapper horizontal" style="padding-top: 0rem;">
+        <form name="CollectNeck" method="post">
 
 
-    function onload() {
-        //hide the fallback imageshow canvas or video
-        if (iv.ios) $('canvas').show();
-        else $('video').show();
-        iv.play();
-    }
+        
+		<div class="col-sm-12 hero-image-wrapper" style="padding: 0">
+			<canvas id="fit-video-ios-fallback" style="width: 1024px; height: 255px; background-image: url(neck-placeholder-lores.jpg); background-color: transparent; background-size: cover; display: inline-block; background-position: initial initial; background-repeat: initial initial;"></canvas>
+			<video id="fit-video" muted="" webkit-playsinline="" poster="neck-placeholder-lores.jpg" preload="none" style="">
+				<source src="/bundles/users/video/neck.m4v" type="video/mp4">
+				<source src="/bundles/users/video/neck.ogv" type="video/ogg">
+				<source src="/bundles/users/video/neck.webm" type="video/webm">
+			</video>
+			<a class="video-control" tabindex="32">
+				<span class="glyphicon glyphicon-play" aria-hidden="true"></span>
+			</a>
+			<!-- <img src="/bundles/users/img/measure2.jpg" alt="" class="img-responsive" /> -->
+		</div>
+		<div class="col-sm-12 panel" style="bottom: 0px;">
+			<span class="glyphicon pull-right slider-arrow glyphicon-chevron-down"></span>
+			<h4 class="panel-heading text-center">Enter your measurements for the perfect fit. Every time.
+			</h4>
+			<div class="panel-body text-center">
+				<div><label for="CollectNeck_neck" class="required">Neck</label> </div>
+				<div style="display: none;"><input type="text" id="CollectNeck_neck" name="CollectNeck[neck]" required="required" value="15"></div>
+				<button type="button" class="btn btn-tap measured" id="button_neck">15 in <span class="caret"></span></button>
+			</div>
+		</div>
+</form>
+<script type="text/javascript">
+	
+	$(function() {
 
-    function onend() {
-        iv.video.currentTime = 0;
-    }
 
-    document.querySelector('button.play').addEventListener("click", function(){
-    	iv.play();
-    });
-    document.querySelector('button.pause').addEventListener("click", function(){
-    	iv.pause();
-    });
+		//video settings
 
-    </script>
-</body>
+		/* This code below is needed to overcome iOS issue of playing video in fullscreen on iPhones
+			Solution is to create a canvas element and draw each frame of video to canvas
+		*/
 
-</html>
+
+   		var canvas = $('#fit-video-ios-fallback');     		
+   		var video =   $('#fit-video');
+
+   		if (video.length) {
+
+   			canvas.width(video.width());
+	    	canvas.height(video.height());    
+
+   			//copy the video placeholder to canvas as a bg image to show something to user before the video starts
+
+   			canvas.css({
+   				background: 'transparent url(\'' + video.attr('poster') + '\')',
+   				'background-size': 'cover'
+   			})
+
+   			var icon = $('.video-control').find('span');
+
+
+			function toggleVideoPlaying () {
+
+				if (!iv.isPlaying) {				 
+					iv.play();
+					icon.addClass('glyphicon-pause').removeClass('glyphicon-play');					
+				}
+				else {				
+					iv.pause();
+					icon.addClass('glyphicon-play').removeClass('glyphicon-pause');					
+				}
+			
+			}
+
+			function toggleSlider(){				
+
+				var slideTo = $('.panel').css('bottom') === "0px" ? -$('.panel').height() + 60 : 0;			
+
+				$('.panel').animate({
+					bottom: slideTo + "px"
+				});
+
+				//change the icon on the panel
+				$('.slider-arrow').toggleClass('glyphicon-chevron-up').toggleClass('glyphicon-chevron-down');
+			}
+
+			function orientationChange() {
+
+				if (window.matchMedia("(orientation: landscape)").matches ) {				
+
+					if (!landspaceMode) {						
+						landspaceMode = true;												
+						$('.body-block-wrapper').addClass('horizontal');					
+						$('.video-control').on("click.slider", toggleSlider);
+						$('.panel-heading, .slider-arrow').on("click.slider", toggleSlider);
+						$('.panel-heading, .slider-arrow').on("click.slider", toggleVideoPlaying);
+					}
+				}
+				else {
+					landspaceMode = false;					
+					$('.body-block-wrapper').removeClass('horizontal');
+					$('.video-control').off("click.slider", toggleSlider);
+					$('.panel-heading, .slider-arrow').off("click.slider", toggleSlider);
+					$('.panel-heading, .slider-arrow').off("click.slider", toggleVideoPlaying);
+				}
+
+			}
+
+   			function onLoad() {
+	    		//show canvas or video depends on os
+	    		if (iv.ios) $('#fit-video-ios-fallback').show();
+	    		else $('#fit-video').show();
+
+	    		//play the video
+	    		toggleVideoPlaying();
+	    		//if horizontal toggle slider	    		
+	    		if (landspaceMode) {
+	    			toggleSlider();
+	    		}
+
+	    	}
+
+	    	function onEnd() {
+	    		//change the icon to play
+	    		iv.isPlaying = false;
+	    		//rewind
+	    		iv.video.currentTime = 0;
+	    		icon.addClass('glyphicon-play').removeClass('glyphicon-pause');
+	    		toggleSlider();
+	    	}
+	    	var iv = new InlineVideo('#fit-video', '#fit-video-ios-fallback', null, onEnd, onLoad, 25, false);
+	    	iv.video.load();
+
+	    	
+
+	    	//play/pause functionality
+	    	
+			$('.video-control').click(toggleVideoPlaying);			
+
+			window.addEventListener('orientationchange', orientationChange); /* this works on mobile */
+			window.addEventListener('resize', orientationChange); /* this on desktop */
+
+			var landspaceMode = false;
+
+			orientationChange();
+
+
+		}
+		
+	});
+
+
+</script>
+		</div>
+            
+
+</body></html>
