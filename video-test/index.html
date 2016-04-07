@@ -68,8 +68,20 @@
     var canvas = document.querySelector('canvas');    
     canvas.width = $('video').innerWidth();
     canvas.height = $('video').innerHeight();    
-    var iv = new InlineVideo('#fit-video', '#fit-video-ios-fallback', null, null, onload, 30, false);
+    var iv = new InlineVideo('#fit-video', '#fit-video-ios-fallback', null, onend, onload, 30, false);
     iv.video.load();
+
+
+    function onload() {
+        //hide the fallback imageshow canvas or video
+        if (iv.ios) $('canvas').show();
+        else $('video').show();
+        iv.video.play();
+    }
+
+    function onend() {
+        iv.video.rewind();
+    }
 
     document.querySelector('button.play').addEventListener("click", function(){
     	iv.play();
@@ -77,14 +89,7 @@
     document.querySelector('button.pause').addEventListener("click", function(){
     	iv.pause();
     });
-    function onload() {
-    	//hide the fallback imageshow canvas or video
-    	if (iv.ios) $('canvas').show();
-    	else $('video').show();
-        iv.video.play();
-    	
 
-    }
     </script>
 </body>
 
