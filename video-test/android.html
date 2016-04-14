@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Android Video</title>
+    <style type="text/css">
+    * {
+        font-family: sans-serif;
+    }
+    div, video {
+        width:100%;
+    }
+    div {
+        position: relative;
+    }
+
+    div span {
+        position: absolute;
+        top:10px;
+        left:10px;
+        font-weight: bold;
+
+    }
+  
+    </style>
+</head>
+<body>
+	  <div class="buttons">    
+        <button class="play">Play</button>
+        <button class="pause">Pause</button>
+    </div>
+    <div >
+    
+	<video playsinline webkit-playsinline muted preload="auto">        
+            <source src=neck.mp4 type=video/mp4 >            
+            <source src=neck.ogv type=video/ogg >    
+            <source src=neck.webm type=video/webm >    
+     </video>
+
+         
+
+     <script>
+  
+
+     var video = document.querySelector('video');
+
+     
+
+
+
+
+    document.querySelector('button.play').addEventListener("click", function(){
+        video.play();
+    });
+    document.querySelector('button.pause').addEventListener("click", function(){
+        video.pause();
+    });
+
+        
+
+     </script>
+</body>
+</html>
