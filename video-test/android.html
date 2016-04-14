@@ -36,7 +36,7 @@
 
     </canvas>
     
-	<video playsinline webkit-playsinline muted preload="auto">        
+	<video playsinline webkit-playsinline muted preload="none">        
             <source src=neck.webm type=video/webm >    
             <source src=neck.ogv type=video/ogg >    
             <source src=neck.mp4 type=video/mp4 >            
@@ -90,7 +90,9 @@
         }
 
 
-        var iv = new InlineVideo('video', 'canvas', null, null, onload, 25, false);
+    var iv = new InlineVideo('video', 'canvas', null, null, onload, 25, false);
+
+    video.attr('preload', 'auto');
     iv.video.load();
 
     document.querySelector('button.play').addEventListener("click", function(){
