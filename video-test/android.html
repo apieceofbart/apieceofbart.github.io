@@ -30,7 +30,11 @@
         <button class="play">Play</button>
         <button class="pause">Pause</button>
     </div>
-    <div >
+    
+
+        <canvas id="normal">
+
+    </canvas>
     
 	<video playsinline webkit-playsinline muted preload="auto">        
             <source src=neck.webm type=video/webm >    
@@ -40,21 +44,30 @@
 
          
 
+       <script src="inline-video-interpolation.js?v=1.4"></script>
+
      <script>
   
 
-     var video = document.querySelector('video');
 
-     
+        //var steps = Math.ceil(Math.log(video.videoWidth/canvas.width)/Math.log(2));
+
+        //console.log(steps);
+
+        function onload() {
+            console.log('video loaded');
+            //iv.video.play();
+        }
 
 
-
+        var iv = new InlineVideo('video', 'canvas', null, null, onload, 25, false);
+    iv.video.load();
 
     document.querySelector('button.play').addEventListener("click", function(){
-        video.play();
+        iv.play();
     });
     document.querySelector('button.pause').addEventListener("click", function(){
-        video.pause();
+        iv.pause();
     });
 
         
