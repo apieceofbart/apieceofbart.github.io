@@ -1,0 +1,221 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>reveal.js</title>
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/softserve.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section>
+					<h2>Are Windows users the children of a lesser god of front-end development?</h2>
+					<aside class="notes">
+						<ul>
+							<li>introduce</li>
+							<li>sweets</li>
+							<li>explain title</li>
+						</ul>
+					</aside>
+				</section>
+				<section>
+					<img style="height:60vh;" src="img/children-of-a-lesser-god-webposter.png" alt="">
+					<aside class="notes">
+						<ul>
+							<li>movie based on play</li>
+							<li>title comes from  Alfred Lord Tennyson's poem</li>
+							<li>strong metaphor - clickbait title</li>
+						</ul>
+					</aside>
+				</section>
+				<section>
+					<h2>Couple of months ago I needed to buy a laptop</h2>
+					<h3>Options</h3>
+					<ul>
+						<li>Mac - overpriced, POSIX, easy to setup VM with Win</li>
+						<li>Linux (eg. Ubuntu), cheap, software/driver issues (so they say)</li>
+						<li>Windows, additional bash setup, mac testing?</li>
+						<li>dual boot</li>
+					</ul>
+				</section>
+				<section>
+					<h2>Setting up terminal</h2>
+					<ul>
+						<li class="fragment">conEmu</li>
+						<li class="fragment">git bash</li>
+						<li class="fragment">cygwin(curl, wget, fish, etc.)</li>
+						<li class="fragment">powershell</li>
+						<li class="fragment">vm with e.g. ubuntu, ssh</li>
+					</ul>
+				</section>
+				<section>
+					<h2>OK Terminal, what about node/npm?</h2>
+					<aside class="notes">
+						<ul>
+							<li>what node and npm is?</li>
+							<li>node - javascript runtime based on chrome's v8</li>
+							<li>npm - largest ecosystem of open source libraries</li>
+						</ul>
+					</aside>
+				</section>
+				<section>
+					<h2>Number of node issues</h2>
+					<div class="images">
+						<img class="fragment" src="img/node-issues-windows.png" alt="">
+						<img class="fragment" src="img/node-issues-mac.png" alt="">
+					</div>
+				</section>
+				<section>
+					<h2>Number of npm issues</h2>
+					<div class="images">
+						<img class="fragment" src="img/npm-issues-windows.png" alt="">
+						<img class="fragment" src="img/npm-issues-mac.png" alt="">
+					</div>
+				</section>
+				<section>
+					<h2>Notorious problems</h2>
+						<h3>260 path character limit (npm3 kind of solved it):</h3>
+
+						<span>discussion: https://github.com/nodejs/node-v0.x-archive/issues/6960</span>
+						<img src="img/260-limit.png" alt="">
+
+						<aside class="notes">
+							<ul>
+								<li>misconception</li>
+								<li>microsoft did it for reason</li>
+								<li>does node support windows?</li>
+								<li>node vs npm disconnection</li>
+								<li>since win8 not a problem</li>
+								<li>npm3 flat structure</li>
+							</ul>
+						</aside>
+
+				</section>
+				<section>
+					<h2>Notorious problems</h2>
+						<h3>node-gyp module</h3>
+
+						<span>discussion: https://github.com/nodejs/node-gyp/issues/629</span>
+						<img src="img/windows-users-are-not-happy.png" alt="">
+
+						<aside class="notes">
+							<ul>
+								<li>node-gyp allow to bring native modules (e.g.c++) to node</li>
+								<li>always an issue</li>
+							</ul>
+						</aside>
+
+				</section>
+				<section>
+					<img src="img/node-gyp-stack.png" alt="">
+					<img src="img/node-gyp-issues.png" alt="">
+				</section>
+				<section>
+						<img style="margin:0" src="img/node-gyp-install.png" alt="">
+						<aside class="notes">
+							<ul>
+								<li>easy on mac, linux, not on windows</li>
+								<li>m$ made it easier</li>
+							</ul>
+						</aside>
+				</section>
+				<section>
+					<h2>Issues I have encountered</h2>
+					<ul>
+					 <li>vue-cli</li>
+					 <li>jest</li>
+					 <li>react-native</li>
+					 <li>reveal.js (live-reload)</li>
+					</ul>
+					<aside class="notes">
+						<ul>
+							<li>not big issues but still..</li>
+							<li>testing is not the same as using it everyday (performance etc.)</li>
+						</ul>
+					</aside>
+				</section>
+				<section style="padding:0;">
+				<div class="guys">
+					<img class="fragment" src="img/some-guy.png" alt="">
+					<img class="fragment" src="img/some-guy2.png" alt="">
+					<img class="fragment" src="img/some-guy3.png" alt="">
+
+					<img class="fragment" src="img/some-guy4.png" alt="">
+					<img class="fragment" src="img/addy-osmani.jpg" alt="">
+					<img class="fragment" src="img/paul-irish.png" alt="">
+				</div>
+
+				</section>
+				<section>
+					<h2>What can you do as front-end dev?</h2>
+					<ul>
+						<li>Make use of path (join, resolve etc.)</li>
+						<li>Use rimraf</li>
+						<li>Use && and || instead of ; and :</li>
+						<li>node-glob</li>
+						<li>cross-env ($ENV_VAR vs %ENV_VAR%)</li>
+						<li>shelljs</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Thing are changing. Why?</h2>
+				</section>
+				<section>
+					<h2>Bad reviews for the newest Macbook Pro</h2>
+					<ul>
+						<li>low batery life</li>
+						<li>touch bar</li>
+						<li>not the best hardware (for the price)</li>
+						<li>USB-C ports only (and headphones jack port - contrary to the newest iPhone)</li>
+					</ul>
+				</section>
+				<section>
+					<h2>Windows Subsystem for Linux</h2>
+					<ul style="font-size:30px;">
+						<li>WSL provides a Linux-compatible kernel interface developed by Microsoft (containing no Linux kernel code), with user-mode binaries from Ubuntu running on top of it – a Bash shell and command language, with native Linux command-line tools (sed, awk, etc.) and programming language interpreters (Ruby, Python, etc.).</li>
+						<li>available on 64-bit Windows 10</li>
+						<li>Microsoft envisages WSL as "primarily a tool for developers – especially web developers and those who work on or with open source projects."</li>
+					</ul>
+				</section>
+					<section>
+					<h2>Questions?</h2>
+					<small>(Please don't ask any I'm already late for work)</small>
+				</section>
+			</div>
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+			// More info about config & dependencies:
+			// - https://github.com/hakimel/reveal.js#configuration
+			// - https://github.com/hakimel/reveal.js#dependencies
+			Reveal.initialize({
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+				]
+			});
+		</script>
+	</body>
+</html>
